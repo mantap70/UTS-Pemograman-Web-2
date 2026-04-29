@@ -109,8 +109,8 @@ Dijalankan di browser Chrome, laptop Windows, prosesor Intel Core i5.
 
 | Percobaan | JavaScript | WebAssembly | Keterangan |
 |---|---|---|---|
-| Percobaan 1 | 719.40 ms | 121.30 ms | **Wasm 5x lebih cepat** |
-| Percobaan 2 | 105.40 ms | 121.10 ms | JS lebih cepat (JIT warm-up) |
+| Percobaan 1 | 105.40 ms | 121.10 ms | **Wasm 5x lebih cepat** |
+| Percobaan 2 | 719.40 ms | 121.30 ms | JS lebih cepat (JIT warm-up) |
 
 ### Analisis
 
