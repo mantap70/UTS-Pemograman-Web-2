@@ -105,7 +105,7 @@ Klik tombol **"Mulai Benchmark"** dan lihat hasilnya.
 
 ## 📊 Hasil Eksperimen
 
-Dijalankan di browser Chrome, laptop Windows, prosesor Intel Core i5.
+Dijalankan di browser Chrome, laptop Windows, prosesor AMD Ryzen 5 7000 Series.
 
 | Percobaan | JavaScript | WebAssembly | Keterangan |
 |---|---|---|---|
