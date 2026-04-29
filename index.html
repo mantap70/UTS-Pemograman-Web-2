@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Benchmark Wasm vs JS</title>
+  <style>
+    body { font-family: sans-serif; max-width: 500px; margin: 2rem auto; }
+    pre { background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; }
+    button { padding: 10px 20px; font-size: 15px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Benchmark: WebAssembly vs JavaScript</h2>
+  <button onclick="jalankanBenchmark()">Mulai Benchmark</button>
+  <pre id="hasil">Klik tombol untuk mulai...</pre>
+
+  <script src="sum.js"></script>
+  <script>
+    const N = 100_000_000;
+    function hitungJS(n) {
+      let total = 0;
+      for (let i = 1; i <= n; i++) total += i;
+      return total;
+    }
+    async function jalankanBenchmark() {
+      const output = document.getElementById("hasil");
+      output.textContent = "Sedang menghitung...";
+      const t1 = performance.now();
+      const rJS = hitungJS(N);
+      const waktuJS = (performance.now() - t1).toFixed(2);
+      await new Promise(r => {
+        if (Module.calledRun) r();
+        else Module.onRuntimeInitialized = r;
+      });
+      const t2 = performance.now();
+      const rWasm = Module.ccall("hitung_jumlah","number",["number"],[N]);
+      const waktuWasm = (performance.now() - t2).toFixed(2);
+      output.textContent =
+        "JavaScript : " + waktuJS + " ms\n" +
+        "WebAssembly: " + waktuWasm + " ms\n" +
+        "WebAssembly " + (waktuJS/waktuWasm).toFixed(1) + "x lebih cepat!";
+    }
+  </script>
+</body>
+</html>
